@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(39, 27, 94);
+}
+
+.container{
+    align-items: center;
+}
+
+.container__form{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+
+}
+
+.container__form-input{
+    font-size: 15px;
+    margin: 5px 2px 5px 2px;
+}
+
+.container__list{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    list-style: none;
+}
+

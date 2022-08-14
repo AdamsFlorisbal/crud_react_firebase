@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import Firebase from './components/firebase/firebase'
-import {  
+import style from "./styles.css";
+
+import {
   getFirestore,
   collection,
   addDoc,
   doc,
   deleteDoc,
   getDocs,
- } from "firebase/firestore";
+} from "firebase/firestore";
 
 
 export const App = () => {
@@ -44,45 +46,54 @@ export const App = () => {
 
   async function deleteUser(id) {
     const userDoc = doc(db, "users", id);
-    
+
     await deleteDoc(userDoc);
     alert("Deletado com sucesso")
   }
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Posição"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Level"
-        value={level}
-        onChange={(e) => setLevel(e.target.value)}
-      />
-      <button onClick={criarDado}>Criar dado</button>
+    <div className="container">
+      
+      <div className="container__form">
+      <h1>Adiciona Jogador</h1>
+        <input
+          className="container__form-input"
+          type="text"
+          placeholder="Nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className="container__form-input"
+          type="text"
+          placeholder="Posição"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+        <input
+          className="container__form-input"
+          type="text"
+          placeholder="Level"
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+        />
+        <button onClick={criarDado}>Criar dado</button>
+      </div>
+      <div>
+        <ul className="container__list">
+          {users.map((user) => {
+            return (
+              <>
+                <li>{user.name}</li>
+                <li>{user.position}</li>
+                <li>{user.level}</li>
 
-      <ul>
-        {users.map((user) => {
-          return (
-            <>
-              <li>{user.name}</li>
-              <li>{user.position}</li>
-              <li>{user.level}</li>
+                <button onClick={() => deleteUser(user.id)}>Deletar</button>
+              </>
+            );
+          })}
+        </ul>
 
-              <button onClick={() => deleteUser(user.id)}>Deletar</button>
-            </>
-          );
-        })}
-      </ul>
+      </div>
     </div>)
 }
