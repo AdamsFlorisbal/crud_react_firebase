@@ -1,12 +1,12 @@
 .container__aviso{
-    justify-items: center;
-    text-align: center;
-    align-items: center;
-    margin: 0 auto;
+    
 }
 
 
 ul {
+     display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
     padding: 0;
     display: flex;
